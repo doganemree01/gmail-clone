@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import "modules";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: "Roboto";
+    background: #F6F8FC;
+}
+
+$light_gray: #f8f9fa;
+$middle_gray: #e9ecef;
+$dark_gray: #495057;
+$light_blue: #d0ebff;
+
+// header alanı
+header{
+    @extend .flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    font-size: 21px;
+    .left{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        .menu{
+            font-size: 30px;
+            @extend .icon;
+            margin-right: 20px;
+        }
+        img,span{
+            cursor: pointer;
+        }
+    }
+    .middle{
+        form{
+            background-color: rgb(243, 243, 243);
+            padding: 6px 9px;
+            gap: 10px;
+            border-radius: 10px;  
+            input{
+                outline: none;
+                border: none;
+                background: transparent;
+                font-size: 18px;
+            }
+        }
+    }
+    .right{
+        @extend .flex;
+        gap: 15px ;
+        i{
+            @extend .icon;
+        }
+        img{
+            border-radius: 50%;
+            height: 36px;
+        }
+    }
+}
+
+section{
+    display: flex;
+    gap: 20px;
+}
+// navigasyon alanı
+nav{
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 40px;
+    .create-mail{
+        background: $light_blue;
+        border-radius: 15px;
+        padding: 10px;
+        display: flex;
+        gap: 20px;
+        cursor: pointer;
+        &:hover{
+            box-shadow: 2px 2px 10px gray;
+            transition: all .2s;
+        }
+    }
+    .middle{
+        display: grid;
+        font-size: 16px;
+        .active{
+            font-weight: bold;
+            background: #e7f5ff;
+            border-radius: 0px 20px 20px 0px ;
+        }
+        a{
+            padding: 8px;
+            margin-left: 4px;
+            display: flex;
+            gap: 12px;
+            cursor: pointer;
+            &:hover{
+                background: #e7f5ff;
+                border-radius: 0px 20px 20px 0px ;
+            }
+            i,span{
+                // tıklama olayını devre dışı bırakır
+               pointer-events: none; 
+            }
+        }
+    }
+    .bottom{
+        div{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+// ana içerik alanı (mail)
+main{
+    flex-grow: 1;
+    .top{
+        background: white;
+        border-radius: 10px 10px 0 0;
+        padding: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .left{
+            display: flex;
+            gap: 10px;
+            i{
+                @extend .icon;
+                width: 25px;
+                height: 25px;
+            }
+        }
+        .right{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            .passive{
+                color: rgb(164, 159, 159);
+                cursor: default;
+            }
+            i{
+                @extend .icon;
+                font-size: 19px;
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+    .mails-area{
+        height: 80vh;
+        background: $middle_gray;
+    }
+    
+}
+
+// gizli nav alanı
+.hide{
+    .create-mail span,
+    .middle a span,
+    .bottom div span{
+            display: none;
+    }
+}
+
+aside{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    span{
+        width: 100%;
+        height: 2px;
+        background: #a4aab0;
+    }
+}
+// mail içeriği
+.mail{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    gap: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid ghostwhite;
+    padding: 10px;
+    transition: box-shadow .3s;
+    &:hover{
+        box-shadow: 0 0 10px ghostwhite;
+        transition: all .3s;
+    }
+    .left{
+        @extend .flex;
+        justify-content: start;
+        gap: 5px;
+    }
+    .right{
+        @extend .flex;
+        justify-content: space-between;
+        font-size: 17px;
+    }
+    .message-title{
+        font-weight: bold;
+    }
+    button{
+        background: none;
+        border: none;
+        font-size: 17px;
+        display: none;
+        padding: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover{
+            background-color: $dark_gray;
+            color: white;
+        }
+
+        .message-date{
+            white-space: nowrap;
+        }
+        
+    }
+    &:hover > .right .message-date{
+        display: none;
+    }
+    &:hover > .right button{
+        display: block;
+    }
+}
+.star-active{
+    color: yellow !important ;
+}
+
+.active-category{
+    background-color: #d0ebff;
+    border-radius: 15px;
+}
+
+// modal
+.modal-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #84868971;
+    display: none;
+    place-items: center;
+}
+
+.modal-inner{
+    display: flex;
+    flex-direction: column;
+    background: white;
+    width: 80%;
+    height: 84%;
+    border-radius: 10px;
+    padding: 40px;
+    position: relative;
+    #close-btn{
+        position: absolute;
+        right: 40px;
+        top: 30px; 
+        font-size: 40px;
+        cursor: pointer;
+     }
+    form{
+        display: flex;
+        flex-direction: column;
+        label{
+            margin-top: 20px;
+        }
+        input,textarea{
+            border: 1px solid gray;
+            border-radius: 4px;
+            margin-top: 10px;
+            padding: 8px;
+        }
+        textarea{
+            min-height: 300px;
+            resize: vertical;
+            width: 100%;
+            max-height: 400px;
+        }
+        
+    }
+    #send-mail-btn{
+        position: absolute;
+        bottom: 40px;
+        left: 40px;
+        background: rgb(56, 96, 227);
+        color: white;
+        padding: 15px 30px;
+        border-radius: 20px;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            box-shadow: 0 0 10px rgb(20, 96, 227);
+            transition: all .4s;
+        }
+    }
+}

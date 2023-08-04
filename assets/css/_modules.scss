@@ -1,0 +1,23 @@
+
+
+.icon{
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    box-sizing: content-box;
+    padding: 3px;
+    border-radius: 50%;
+    transition: all .2s;
+    cursor: pointer;
+    &:hover{
+        background-color: #d8dbdd;
+        transition: all .2s;
+    }
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
