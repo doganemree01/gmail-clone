@@ -17,4 +17,6 @@
 
 - arama çubuğunu aktif et
 - - inputa yazılan yazıyı al ve mailllerin içeriğile eşleşenleri ekrana bas
+ 
+  
 ![](screen.gif)
